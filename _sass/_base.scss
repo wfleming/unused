@@ -1,0 +1,42 @@
+body {
+  font-family: "Inconsolata", monospace;
+  color: #333;
+  font-size: 22px;
+}
+
+a {
+  color: darken(#faf, 30%);
+}
+
+header {
+  h1 {
+    position: relative;
+  }
+
+  a.build-status {
+    position: absolute;
+    right: 0;
+    width: 100px;
+  }
+}
+
+.container {
+  max-width: 600px;
+  padding: 0 1em;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
+}
+
+pre {
+  border: 1px solid #e5e5e5;
+  background: #fafafa;
+  padding: 1em;
+  font-size: .75em;
+}
+
+h3 {
+  border-bottom: 1px solid #666;
+}

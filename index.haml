@@ -1,0 +1,57 @@
+---
+layout: default
+---
+%a{href: "http://i.giphy.com/3o7qDT1I4OfQxnJTvW.gif"}
+  %img{src: "http://i.giphy.com/3o7qDT1I4OfQxnJTvW.gif", alt: "Unused usage"}
+
+:markdown
+  You can install [my formulae] via [Homebrew] with `brew tap`:
+
+      $ brew tap joshuaclayton/formulae
+
+  Next, run:
+
+      $ brew install unused
+
+  [my formulae]: https://github.com/joshuaclayton/homebrew-formulae
+  [Homebrew]: http://brew.sh/
+
+  To update to the latest available version of Unused:
+
+      $ brew update
+      $ brew upgrade unused
+
+%h3 Why?
+
+:markdown
+  **Unused code is expensive.** People have a limited amount of room in their working
+  memory; by filling working memory with unused code when dissecting a problem,
+  developers are immediately at a disadvantage as there's less room to reason
+  about parts of the codebase that are actually in use.
+
+  I like cooking, so here's an analogy.
+
+  Imagine you're cooking dinner, and you're washing dishes as you go. An empty
+  sink when you're washing dishes means your hands are free to organize things,
+  to work more quickly, to speed through simple tasks and continue onward.
+
+  Unused code would be working with a sink stacked high with flatware, dishes,
+  knives. It will actively slow you down, but once those items are removed,
+  you're able to operate more freely again.
+
+%h3 How?
+
+:markdown
+  Unused leverages work done by [Exuberant Ctags] by **collecting the list of
+  tokens** and **searching the codebase** with [the Silver Searcher] for each
+  occurrence. With those results, it classifies occurrences into different
+  buckets, determining if it's part of the test suite.
+
+  [Exuberant Ctags]: http://ctags.sourceforge.net/
+  [the Silver Searcher]: http://geoff.greer.fm/ag/
+
+  Once searching is complete, it **analyzes usage patterns** based on general
+  guidelines and **calculates a likelihood** for whether it's able to be removed;
+  in Rails for example, controller names (`UsersController`) are likely never
+  referred to by that exact name; instead, the Rails router uses a symbol to
+  refer to it instead (e.g. `resources :users, only: [:index, :show]`).
