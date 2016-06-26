@@ -7,6 +7,7 @@ url: "https://unused.codes"
 social:
   github: https://github.com/joshuaclayton/unused
   twitter: https://twitter.com/joshuaclayton
+  hackage: http://hackage.haskell.org/package/unused
 travis_url: https://travis-ci.org/joshuaclayton/unused
 travis_svg: //travis-ci.org/joshuaclayton/unused.svg?branch=master
 
