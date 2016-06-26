@@ -2,48 +2,10 @@
 layout: default
 ---
 
-<a href='http://i.giphy.com/3o7qDT1I4OfQxnJTvW.gif'>
-  <img alt='Unused usage' src='//i.giphy.com/3o7qDT1I4OfQxnJTvW.gif'>
-</a>
+{% include homepage/gif.html %}
 
-<p>You can install <a href="https://github.com/joshuaclayton/homebrew-formulae">my formulae</a> via <a href="http://brew.sh/">Homebrew</a> with <code>brew tap</code>:</p>
+{% include homepage/installation.html %}
 
-<pre><code>$ brew tap joshuaclayton/formulae&#x000A;</code></pre>
+{% include homepage/reasoning.html %}
 
-<p>Next, run:</p>
-
-<pre><code>$ brew install unused&#x000A;</code></pre>
-
-<p>To update to the latest available version of Unused:</p>
-
-<pre><code>$ brew update&#x000A;$ brew upgrade unused&#x000A;</code></pre>
-
-<h3>Why?</h3>
-
-<p><strong>Unused code is expensive.</strong> People have a limited amount of room in their working
-memory; by filling working memory with unused code when dissecting a problem,
-developers are immediately at a disadvantage as there's less room to reason
-about parts of the codebase that are actually in use.</p>
-
-<p>I like cooking, so here's an analogy.</p>
-
-<p>Imagine you're cooking dinner, and you're washing dishes as you go. An empty
-sink when you're washing dishes means your hands are free to organize things,
-to work more quickly, to speed through simple tasks and continue onward.</p>
-
-<p>Unused code would be working with a sink stacked high with flatware, dishes,
-knives. It will actively slow you down, but once those items are removed,
-you're able to operate more freely again.</p>
-
-<h3>How?</h3>
-
-<p>Unused leverages work done by <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> by <strong>collecting the list of
-tokens</strong> and <strong>searching the codebase</strong> with <a href="http://geoff.greer.fm/ag/">the Silver Searcher</a> for each
-occurrence. With those results, it classifies occurrences into different
-buckets, determining if it's part of the test suite.</p>
-
-<p>Once searching is complete, it <strong>analyzes usage patterns</strong> based on general
-guidelines and <strong>calculates a likelihood</strong> for whether it's able to be removed;
-in Rails for example, controller names (<code>UsersController</code>) are likely never
-referred to by that exact name; instead, the Rails router uses a symbol to
-refer to it instead (e.g. <code>resources :users, only: [:index, :show]</code>).</p>
+{% include homepage/methodology.html %}

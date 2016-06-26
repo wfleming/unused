@@ -1,0 +1,12 @@
+<h3>How?</h3>
+
+<p>Unused leverages work done by <a href="{{ site.links.ctags }}">Exuberant Ctags</a> by <strong>collecting the list of
+tokens</strong> and <strong>searching the codebase</strong> with <a href="{{ site.links.ag }}">the Silver Searcher</a> for each
+occurrence. With those results, it classifies occurrences into different
+buckets, determining if it's part of the test suite.</p>
+
+<p>Once searching is complete, it <strong>analyzes usage patterns</strong> based on general
+guidelines and <strong>calculates a likelihood</strong> for whether it's able to be removed;
+in Rails for example, controller names (<code>UsersController</code>) are likely never
+referred to by that exact name; instead, the Rails router uses a symbol to
+refer to it instead (e.g. <code>resources :users, only: [:index, :show]</code>).</p>

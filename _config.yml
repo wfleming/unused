@@ -4,11 +4,19 @@ description: >
   Unused is a command line tool to identify unused code.
 baseurl: ""
 url: "https://unused.codes"
-social:
-  github: https://github.com/joshuaclayton/unused
-  twitter: https://twitter.com/joshuaclayton
+links:
+  social:
+    github: https://github.com/joshuaclayton/unused
+    twitter: https://twitter.com/joshuaclayton
+  travis_url: https://travis-ci.org/joshuaclayton/unused
+  travis_svg: //travis-ci.org/joshuaclayton/unused.svg?branch=master
   hackage: http://hackage.haskell.org/package/unused
-travis_url: https://travis-ci.org/joshuaclayton/unused
-travis_svg: //travis-ci.org/joshuaclayton/unused.svg?branch=master
+  gif:
+    image: //i.giphy.com/3o7qDT1I4OfQxnJTvW.gif
+    url: https://i.giphy.com/3o7qDT1I4OfQxnJTvW.gif
+  homebrew_formulae: https://github.com/joshuaclayton/homebrew-formulae
+  homebrew: http://brew.sh/
+  ctags: http://ctags.sourceforge.net/
+  ag: http://geoff.greer.fm/ag/
 
 markdown: kramdown
