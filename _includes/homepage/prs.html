@@ -1,0 +1,12 @@
+<h3>Pull Requests</h3>
+
+<p>Want to see Unused in action? Here are {{ site.pull_requests | size }} pull requests demonstrating its use.</p>
+
+<ul class="pull-requests">
+  {% for pr in site.pull_requests %}
+  <li>
+    <a href="{{ pr.url }}">{{ pr.project }}</a>
+    [<span class="added">{{ pr.lines_added }}</span>, <span class="removed">{{ pr.lines_removed }}</span>]
+  </li>
+  {% endfor %}
+</ul>

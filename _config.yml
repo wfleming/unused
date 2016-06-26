@@ -10,6 +10,7 @@ links:
     twitter: https://twitter.com/joshuaclayton
   travis_url: https://travis-ci.org/joshuaclayton/unused
   travis_svg: //travis-ci.org/joshuaclayton/unused.svg?branch=master
+  alt_install_options: https://github.com/joshuaclayton/unused#installing-and-updating
   hackage: http://hackage.haskell.org/package/unused
   gif:
     image: //i.giphy.com/3o7qDT1I4OfQxnJTvW.gif
@@ -18,5 +19,15 @@ links:
   homebrew: http://brew.sh/
   ctags: http://ctags.sourceforge.net/
   ag: http://geoff.greer.fm/ag/
+
+pull_requests:
+- url: https://github.com/exercism/exercism.io/pull/2947
+  lines_added: 0
+  lines_removed: 1501
+  project: Exercism.io
+- url: https://github.com/rubygems/rubygems.org/pull/1319
+  lines_added: 1
+  lines_removed: 39
+  project: Rubygems.org
 
 markdown: kramdown

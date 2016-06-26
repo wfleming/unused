@@ -40,3 +40,20 @@ pre {
 h3 {
   border-bottom: 1px solid #666;
 }
+
+.pull-requests {
+  .added {
+    color: green;
+    &::before {
+      content: "+";
+    }
+  }
+
+  .removed {
+    color: red;
+
+    &::before {
+      content: "-";
+    }
+  }
+}
