@@ -25,6 +25,10 @@ pull_requests:
   lines_added: 0
   lines_removed: 1501
   project: Exercism.io
+- url: https://github.com/houndci/hound/pull/1169
+  lines_added: 0
+  lines_removed: 118
+  project: HoundCI
 - url: https://github.com/rubygems/rubygems.org/pull/1319
   lines_added: 1
   lines_removed: 39
