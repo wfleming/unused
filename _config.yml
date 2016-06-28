@@ -19,6 +19,9 @@ links:
   homebrew: http://brew.sh/
   ctags: http://ctags.sourceforge.net/
   ag: http://geoff.greer.fm/ag/
+  languages:
+    ruby: https://www.ruby-lang.org/
+    elixir: http://elixir-lang.org/
 
 pull_requests:
 - url: https://github.com/exercism/exercism.io/pull/2947
