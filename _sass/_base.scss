@@ -13,10 +13,20 @@ header {
     position: relative;
   }
 
-  a.build-status {
+  section.links {
     position: absolute;
+    top: 0;
     right: 0;
-    width: 100px;
+    height: 40px;
+
+    a {
+      float: right;
+      margin-left: 10px;
+    }
+
+    a.github {
+      width: 20px;
+    }
   }
 }
 

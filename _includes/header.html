@@ -1,9 +1,17 @@
 <header>
   <h1>
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
-    <a class="build-status" href="{{ site.links.travis_url }}">
-      <img src="{{ site.links.travis_svg }}" alt="Travis build status">
-    </a>
+    {{ site.title }}
+
+    <section class="links">
+      <a class="build-status" href="{{ site.links.travis_url }}">
+        <img src="{{ site.links.travis_svg }}" alt="Travis build status">
+      </a>
+
+      <a class="github" href="{{ site.links.social.github }}">
+        <img src="/images/gh.png" alt="GitHub Logo">
+      </a>
+    </section>
+
   </h1>
   <h2>{{ site.tagline }}</h2>
 </header>
