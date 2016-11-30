@@ -5,6 +5,7 @@ module Unused.TermSearch
     ) where
 
 import qualified Data.Maybe as M
+import           GHC.IO.Exception (ExitCode(ExitSuccess))
 import qualified System.Process as P
 import           Unused.TermSearch.Internal (commandLineOptions, parseSearchResult)
 import           Unused.TermSearch.Types (SearchResults(..))
@@ -16,5 +17,7 @@ search t =
 
 ag :: String -> IO String
 ag t = do
-  (_, results, _) <- P.readProcessWithExitCode "ag" (commandLineOptions t) ""
-  return results
+  (c, stdout, stderr) <- P.readProcessWithExitCode "rg" (commandLineOptions t) ""
+  case c of
+      ExitSuccess -> return stdout
+      _ -> return stderr

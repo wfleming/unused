@@ -15,15 +15,15 @@ commandLineOptions :: String -> [String]
 commandLineOptions t =
     if regexSafeTerm t
         then ["(\\W|^)" ++ t ++ "(\\W|$)", "."] ++ baseFlags
-        else [t, ".", "-Q"] ++ baseFlags
+        else [t, ".", "-F"] ++ baseFlags
   where
-    baseFlags = ["-c", "--ackmate", "--ignore-dir", "tmp/unused"]
+    baseFlags = ["-c", "-j", "1"]
 
 parseSearchResult :: SearchTerm -> String -> Maybe TermMatch
 parseSearchResult term =
     maybeTermMatch . map T.unpack . T.splitOn ":" . T.pack
   where
-    maybeTermMatch [_, path, count] = Just $ toTermMatch term path $ countInt count
+    maybeTermMatch [path, count] = Just $ toTermMatch term path $ countInt count
     maybeTermMatch _ = Nothing
     countInt = M.fromMaybe 0 . stringToInt
     toTermMatch (OriginalTerm t) path = TermMatch t path Nothing
