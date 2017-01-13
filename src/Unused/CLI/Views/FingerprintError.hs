@@ -4,6 +4,7 @@ module Unused.CLI.Views.FingerprintError
 
 import qualified Data.List as L
 import qualified Unused.CLI.Views.Error as V
+import           Unused.CLI.Util
 import           Unused.Cache.DirectoryFingerprint (FingerprintOutcome(..))
 
 fingerprintError :: FingerprintOutcome -> IO ()
@@ -14,6 +15,6 @@ fingerprintError e = do
 
 printOutcomeMessage :: FingerprintOutcome -> IO ()
 printOutcomeMessage (MD5ExecutableNotFound execs) =
-    putStrLn $
+    ePutStrLn $
         "Unable to find any of the following executables \
         \in your PATH: " ++ L.intercalate ", " execs

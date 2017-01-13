@@ -7,12 +7,12 @@ import Unused.CLI.Util
 analysisHeader :: [a] -> IO ()
 analysisHeader terms = do
     setSGR [SetConsoleIntensity BoldIntensity]
-    putStr "Unused: "
+    ePutStr "Unused: "
     setSGR [Reset]
 
-    putStr "analyzing "
+    ePutStr "analyzing "
 
     setSGR [SetColor Foreground Dull Green]
-    putStr $ show $ length terms
+    ePutStr $ show $ length terms
     setSGR [Reset]
-    putStr " terms"
+    ePutStr " terms"

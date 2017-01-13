@@ -11,35 +11,35 @@ missingTagsFileError e = do
     V.errorHeader "There was a problem finding a tags file."
     printOutcomeMessage e
 
-    putStr "\n"
+    ePutStr "\n"
 
     setSGR [SetConsoleIntensity BoldIntensity]
-    putStr "If you're generating a ctags file to a custom location, "
-    putStrLn "you can pipe it into unused:"
+    ePutStr "If you're generating a ctags file to a custom location, "
+    ePutStrLn "you can pipe it into unused:"
     setSGR [Reset]
 
-    putStrLn "    cat custom/ctags | unused --stdin"
+    ePutStrLn "    cat custom/ctags | unused --stdin"
 
-    putStr "\n"
+    ePutStr "\n"
 
     setSGR [SetConsoleIntensity BoldIntensity]
-    putStrLn "You can find out more about Exuberant Ctags here:"
+    ePutStrLn "You can find out more about Exuberant Ctags here:"
     setSGR [Reset]
-    putStrLn "    http://ctags.sourceforge.net/"
+    ePutStrLn "    http://ctags.sourceforge.net/"
 
-    putStr "\n"
+    ePutStr "\n"
 
     setSGR [SetConsoleIntensity BoldIntensity]
-    putStrLn "You can read about a good git-based Ctags workflow here:"
+    ePutStrLn "You can read about a good git-based Ctags workflow here:"
     setSGR [Reset]
-    putStrLn "    http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html"
+    ePutStrLn "    http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html"
 
-    putStr "\n"
+    ePutStr "\n"
 
 printOutcomeMessage :: TagSearchOutcome -> IO ()
 printOutcomeMessage (TagsFileNotFound directoriesSearched) = do
-    putStrLn "Looked for a 'tags' file in the following directories:\n"
+    ePutStrLn "Looked for a 'tags' file in the following directories:\n"
     mapM_ (\d -> putStrLn $ "* " ++ d) directoriesSearched
 printOutcomeMessage (IOError e) = do
-    putStrLn "Received error when loading tags file:\n"
-    putStrLn $ "    " ++ show e
+    ePutStrLn "Received error when loading tags file:\n"
+    ePutStrLn $ "    " ++ show e

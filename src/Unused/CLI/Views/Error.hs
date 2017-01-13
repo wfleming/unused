@@ -10,6 +10,6 @@ errorHeader s = do
     setSGR [SetColor Foreground Vivid White]
     setSGR [SetConsoleIntensity BoldIntensity]
 
-    putStrLn $ "\n" ++ s ++ "\n"
+    ePutStrLn $ "\n" ++ s ++ "\n"
 
     setSGR [Reset]

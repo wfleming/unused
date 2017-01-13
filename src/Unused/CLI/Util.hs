@@ -2,6 +2,8 @@ module Unused.CLI.Util
     ( resetScreen
     , withRuntime
     , installChildInterruptHandler
+    , ePutStrLn
+    , ePutStr
     , module System.Console.ANSI
     ) where
 
@@ -11,7 +13,7 @@ import qualified Control.Exception as E
 import qualified Control.Monad as M
 import           System.Console.ANSI
 import qualified System.Exit as Ex
-import           System.IO (hSetBuffering, BufferMode(NoBuffering), stdout)
+import           System.IO (hPutStr, hPutStrLn, hSetBuffering, BufferMode(NoBuffering), stderr, stdout)
 import qualified System.Posix.Signals as S
 
 withRuntime :: IO a -> IO a
@@ -63,3 +65,9 @@ resetScreenState = do
     resetScreen
     showCursor
     setSGR [Reset]
+
+ePutStrLn :: String -> IO ()
+ePutStrLn = hPutStrLn stderr
+
+ePutStr :: String -> IO ()
+ePutStr = hPutStr stderr

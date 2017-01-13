@@ -17,6 +17,6 @@ invalidConfigError es = do
 configError :: ParseConfigError -> IO ()
 configError ParseConfigError{ pcePath = path, pceParseError = msg} = do
     setSGR [SetConsoleIntensity BoldIntensity]
-    putStrLn path
+    ePutStrLn path
     setSGR [Reset]
-    putStrLn $ "    " ++ msg
+    ePutStrLn $ "    " ++ msg

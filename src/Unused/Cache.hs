@@ -9,6 +9,7 @@ import           Data.Csv (FromRecord, ToRecord, HasHeader(..), encode, decode)
 import qualified Data.Vector as V
 import qualified System.Directory as D
 import           Unused.Cache.DirectoryFingerprint (FingerprintOutcome(..), sha)
+import           Unused.CLI.Util
 import           Unused.Util (safeReadFile)
 
 newtype CacheFileName = CacheFileName String
@@ -41,7 +42,7 @@ readCache = do
 
 cacheFileName :: String -> IO (Either FingerprintOutcome CacheFileName)
 cacheFileName context = do
-    putStrLn "\n\nCalculating cache fingerprint... "
+    ePutStrLn "\n\nCalculating cache fingerprint... "
     fmap (CacheFileName . toFileName) <$> sha
   where
     toFileName s = cacheDirectory ++ "/" ++ context ++ "-" ++ s ++ ".csv"
