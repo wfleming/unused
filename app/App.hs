@@ -18,7 +18,7 @@ import qualified Unused.CLI.Views as V
 import           Unused.Cache (FingerprintOutcome(..), cached)
 import           Unused.Grouping (CurrentGrouping(..), groupedResponses)
 import           Unused.Parser (parseResults)
-import           Unused.ResponseFilter (withOneOccurrence, withLikelihoods, ignoringPaths)
+import           Unused.ResponseFilter (withOneOccurrence, withLikelihoods, ignoringPaths, includingPaths)
 import           Unused.ResultsClassifier (ParseConfigError, LanguageConfiguration(..), loadAllConfigurations)
 import           Unused.TagsSource (TagSearchOutcome, loadTagsFromFile, loadTagsFromPipe)
 import           Unused.TermSearch (SearchResults(..), SearchTerm, fromResults)
@@ -41,6 +41,7 @@ data Options = Options
     , oLikelihoods :: [RemovalLikelihood]
     , oAllLikelihoods :: Bool
     , oIgnoredPaths :: [String]
+    , oIncludePaths :: [String]
     , oGrouping :: CurrentGrouping
     , oWithoutCache :: Bool
     , oFromStdIn :: Bool
@@ -114,6 +115,7 @@ optionFilters tms = foldl (>>=) (pure tms) matchSetFilters
         [ singleOccurrenceFilter
         , likelihoodsFilter
         , ignoredPathsFilter
+        , includedPathsFilter
         ]
 
 singleOccurrenceFilter :: AppConfig m => TermMatchSet -> m TermMatchSet
@@ -131,6 +133,9 @@ likelihoodsFilter tms =
 
 ignoredPathsFilter :: AppConfig m => TermMatchSet -> m TermMatchSet
 ignoredPathsFilter tms = asks $ ignoringPaths . oIgnoredPaths <*> pure tms
+
+includedPathsFilter :: AppConfig m => TermMatchSet -> m TermMatchSet
+includedPathsFilter tms = asks $ includingPaths . oIncludePaths <*> pure tms
 
 readFromStdIn :: AppConfig m => m Bool
 readFromStdIn = asks oFromStdIn

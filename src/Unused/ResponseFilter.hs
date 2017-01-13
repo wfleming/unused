@@ -3,6 +3,7 @@ module Unused.ResponseFilter
     , withLikelihoods
     , oneOccurence
     , ignoringPaths
+    , includingPaths
     , isClassOrModule
     , autoLowLikelihood
     , updateMatches
@@ -30,6 +31,13 @@ ignoringPaths xs =
   where
     newMatches = filter (not . matchesPath . tmPath)
     matchesPath p = any (`L.isInfixOf` p) xs
+
+includingPaths :: [String] -> TermMatchSet -> TermMatchSet
+includingPaths xs =
+    if L.null xs then id else updateMatches newMatches
+  where
+    newMatches = filter (matchesPath . tmPath)
+    matchesPath p = any (`L.isPrefixOf` p) xs
 
 includesLikelihood :: [RemovalLikelihood] -> TermResults -> Bool
 includesLikelihood l = (`elem` l) . rLikelihood . trRemoval

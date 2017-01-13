@@ -34,6 +34,7 @@ parseOptions =
     <*> parseLikelihoods
     <*> parseAllLikelihoods
     <*> parseIgnorePaths
+    <*> parseIncludePaths
     <*> parseGroupings
     <*> parseWithoutCache
     <*> parseFromStdIn
@@ -78,6 +79,12 @@ parseIgnorePaths = many $ strOption $
     long "ignore"
     <> metavar "PATH"
     <> help "[Allows multiple] Ignore paths that contain PATH"
+
+parseIncludePaths :: Parser [String]
+parseIncludePaths = many $ strOption $
+    long "include"
+    <> metavar "PATH"
+    <> help "[Allows multiple] Only inspect paths that start with PATH"
 
 parseGroupings :: Parser CurrentGrouping
 parseGroupings =
