@@ -8,6 +8,7 @@ import qualified Data.Map.Strict as Map
 import           Unused.CLI.Util
 import qualified Unused.CLI.Views.NoResultsFound as V
 import           Unused.CLI.Views.SearchResult.ColumnFormatter
+import qualified Unused.CLI.Views.SearchResult.CodeClimateResult as V
 import qualified Unused.CLI.Views.SearchResult.ListResult as V
 import qualified Unused.CLI.Views.SearchResult.TableResult as V
 import           Unused.CLI.Views.SearchResult.Types
@@ -55,3 +56,4 @@ printMatches r ms = do
     case outputFormat' of
         Column -> V.printTable r ms
         List -> V.printList r ms
+        CodeClimateJSON -> V.printCodeClimateJSON r ms

@@ -17,7 +17,7 @@ data ResultsOptions = ResultsOptions
     , roOutputFormat :: ResultsFormat
     }
 
-data ResultsFormat = Column | List
+data ResultsFormat = Column | List | CodeClimateJSON
 type ResultsPrinter = R.ReaderT ResultsOptions IO
 
 columnFormat :: ResultsPrinter ColumnFormat

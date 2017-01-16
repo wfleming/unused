@@ -153,4 +153,5 @@ numberOfCommits :: AppConfig m => m (Maybe Int)
 numberOfCommits = asks oCommitCount
 
 resultFormatter :: AppConfig m => m V.ResultsFormat
+--TODO: choose CodeClimateJSON here based on --format arg
 resultFormatter = B.bool V.Column V.List . M.isJust <$> numberOfCommits
