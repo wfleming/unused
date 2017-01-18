@@ -46,6 +46,7 @@ data Options = Options
     , oWithoutCache :: Bool
     , oFromStdIn :: Bool
     , oCommitCount :: Maybe Int
+    , oFormat :: Maybe V.ResultsFormat
     }
 
 runProgram :: Options -> IO ()
@@ -153,5 +154,7 @@ numberOfCommits :: AppConfig m => m (Maybe Int)
 numberOfCommits = asks oCommitCount
 
 resultFormatter :: AppConfig m => m V.ResultsFormat
---TODO: choose CodeClimateJSON here based on --format arg
-resultFormatter = B.bool V.Column V.List . M.isJust <$> numberOfCommits
+resultFormatter = asks $ (\o -> M.fromMaybe (defaultFmt o)  (oFormat o))
+  where
+    defaultFmt = B.bool V.Column V.List . M.isJust <$> oCommitCount
+

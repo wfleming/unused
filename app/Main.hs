@@ -5,6 +5,7 @@ import           Common
 import qualified Data.Maybe as M
 import           Options.Applicative
 import           Unused.CLI (SearchRunner(..))
+import           Unused.CLI.Views.SearchResult.Types (ResultsFormat(..))
 import           Unused.Grouping (CurrentGrouping(..))
 import           Unused.Types (RemovalLikelihood(..))
 import           Unused.Util (stringToInt)
@@ -39,6 +40,7 @@ parseOptions =
     <*> parseWithoutCache
     <*> parseFromStdIn
     <*> parseCommitCount
+    <*> parseFormat
 
 parseSearchRunner :: Parser SearchRunner
 parseSearchRunner =
@@ -123,3 +125,15 @@ parseCommitCount =
     commitParser = optional $ strOption $
         long "commits"
         <> help "Number of recent commit SHAs to display per token"
+
+parseFormat :: Parser (Maybe ResultsFormat)
+parseFormat = (parseFormatStr =<<) <$> (optional parseFormatOption)
+
+parseFormatStr :: String -> Maybe ResultsFormat
+parseFormatStr "codeclimate" = Just CodeClimateJSON
+parseFormatStr _ = Nothing
+
+parseFormatOption :: Parser String
+parseFormatOption = strOption $
+    long "format"
+    <> help "[Allowed: text, codeclimate] Output format"
