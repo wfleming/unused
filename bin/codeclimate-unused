@@ -1,6 +1,8 @@
 #!/bin/sh
 set -ex
 
+export TERM="dumb"
+
 target_src_dir="$HOME/code-rw"
 if [ -f /config.json ]; then
   include_paths=$(jq ".include_paths[]" /config.json)
