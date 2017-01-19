@@ -1,0 +1,23 @@
+Tasks related to CC support:
+
+- [x] allow explicit inclusion of paths
+- [x] ensure all error output goes to stderr
+- [x] allow specifying a formatter on the cmd line
+- [x] implement a CC results formatter for JSON
+- [x] bash wrapper script to :
+      1. copy /code to a writable dir
+      1. run `ctags` on that dir
+      1. read config.json & then exec unused
+- [x] dockerfile build process (use dual-container trick with stack-musl)
+- [ ] Track line numbers of defs as part, include in CC output
+- [ ] BUG: see note below about console resets, etc. These are still getting
+      sent within CLI runs, which causes issues. Need to either disable all that
+      junk intelligently based on TTY/TERM, or turn it off with an explicit flag.
+- [ ] Finish up CC formatter: write readup contents, etc.
+
+
+Other things:
+* my `resultsFormatter` impl in App is... not elegant. Improve that?
+* local testing with new flags shows that the console resets/text changes are
+  happening in undesirable ways. Might not be a practical problem within an
+  engine (no tty), but bears attention
