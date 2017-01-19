@@ -1,0 +1,37 @@
+#!/bin/sh
+set -ex
+
+target_src_dir="$HOME/code-rw"
+if [ -f /config.json ]; then
+  include_paths=$(jq ".include_paths[]" /config.json)
+else
+  include_paths=""
+fi
+
+# 1. Move src to a writable dir so we can run ctags
+cp -r /code/ "$target_src_dir"
+cd "$target_src_dir"
+
+# 2. Write ctags to ./tmp
+mkdir -p ./tmp
+if [ -n "$include_paths" ]; then
+  ctags -f ./tmp/tags $include_paths
+else
+  ctags -f ./tmp/tags -R .
+fi
+
+# 3. Construct --include args for `unused`
+include_args=""
+if [ -n "$include_paths" ]; then
+  for f in $include_paths; do
+    include_args="$include_args --include $f"
+  done
+fi;
+
+# 4. run `unused`
+exec /home/unused/bin/unused \
+  --no-progress \
+  --group-by none \
+  --format codeclimate \
+  $include_args \
+  $@
